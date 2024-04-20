@@ -1,6 +1,6 @@
 import {Product} from "./types/Product";
 
-export const Products: Product[] = [
+export const productList: Product[] = [
   {
     name: "Nexabook Series 5",
     slug: "nexabook-series5",

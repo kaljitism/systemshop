@@ -1,5 +1,5 @@
 import express, {Request, Response} from "express";
-import {Products} from "./data";
+import {productList} from "./data";
 import cors from "cors";
 
 // Server
@@ -13,9 +13,14 @@ app.use(
   })
 )
 
-// GET Route
+// GET Route to get all products
 app.get('/api/products', (request: Request, response: Response) => {
-  response.json(Products)
+  response.json(productList)
+})
+
+// GET Route to get a single product Listing
+app.get('/api/products/:slug', (request: Request, response: Response) => {
+  response.json(productList.find((requestedProduct) => requestedProduct.slug === request.params.slug))
 })
 
 // Port Number
