@@ -1,13 +1,14 @@
-import {Component} from 'react';
+import {Helmet} from "react-helmet-async";
 
-class ProductPage extends Component {
-  render() {
-    return (
-      <div>
-        Product Page
-      </div>
-    );
-  }
+function ProductPage() {
+  return (
+    <div>
+      <Helmet>
+        <title>Empty Right Now</title>
+      </Helmet>
+      Product Page
+    </div>
+  );
 }
 
 export default ProductPage;

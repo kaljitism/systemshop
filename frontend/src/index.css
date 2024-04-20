@@ -11,3 +11,7 @@
     max-width: 480px;
     width: 100%;
 }
+
+.rating span {
+    color: #ffc000;
+}

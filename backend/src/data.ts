@@ -1,6 +1,6 @@
-import {Product} from "./types/Product.ts";
+import {Product} from "./types/Product";
 
-export const sampleProducts: Product[] = [
+export const Products: Product[] = [
   {
     name: "Nexabook Series 5",
     slug: "nexabook-series5",
