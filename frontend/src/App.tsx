@@ -1,7 +1,6 @@
-import {Product} from "./types/Product.ts";
-import {sampleProducts} from "./data.ts";
 import {Component} from "react";
-import {Col, Container, Nav, Navbar, Row} from "react-bootstrap";
+import {Container, Nav, Navbar} from "react-bootstrap";
+import {Outlet} from "react-router-dom";
 
 class App extends Component {
   render() {
@@ -20,19 +19,7 @@ class App extends Component {
         </header>
         <main>
           <Container className="mt-3">
-            <Row>
-              {sampleProducts.map((product: Product) => (
-                <Col key={product.slug} sm={6} md={4} lg={3}>
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="product-image"
-                  />
-                  <h2>{product.name}</h2>
-                  <p>${product.price}</p>
-                </Col>
-              ))}
-            </Row>
+            <Outlet/>
           </Container>
         </main>
         <footer>
