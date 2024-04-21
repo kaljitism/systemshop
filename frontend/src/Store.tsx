@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 import { Cart, CartItem } from "./types/Cart.ts";
 
 type AppState = {
@@ -34,10 +35,12 @@ const initialState: AppState = {
 type Action =
   | { type: 'SWITCH_MODE' }
   | { type: 'CART_ADD_ITEM', payload: CartItem }
+  | { type: 'CART_REMOVE_ITEM', payload: CartItem }
 
 function reducer( state: AppState, action: Action ): AppState {
   if ( action.type === 'SWITCH_MODE' ) {
     // Todo: Save Theme in local storage
+    localStorage.setItem( 'mode', state.mode === 'dark' ? 'light' : 'dark' )
     return { ...state, mode: state.mode === 'dark' ? 'light' : 'dark' }
   } else if ( action.type === 'CART_ADD_ITEM' ) {
     const newItem = action.payload
@@ -50,6 +53,13 @@ function reducer( state: AppState, action: Action ): AppState {
       )
       : [ ...state.cart.cartItems, newItem ]
     localStorage.setItem( 'cartItems', JSON.stringify( cartItems ) )
+    return { ...state, cart: { ...state.cart, cartItems } }
+  } else if ( action.type === 'CART_REMOVE_ITEM' ) {
+    const cartItems = state.cart.cartItems.filter(
+      ( item: CartItem ) => item._id !== action.payload._id
+    )
+    localStorage.setItem( 'cartItems', JSON.stringify( cartItems ) )
+    toast.info( 'Product Removed from Cart!' )
     return { ...state, cart: { ...state.cart, cartItems } }
   } else {
     return state
