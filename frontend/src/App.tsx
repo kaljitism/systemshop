@@ -1,6 +1,9 @@
 import { useContext, useEffect } from "react";
 import { Badge, Button, Container, Nav, Navbar } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import { Link, Outlet } from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from "react-toastify";
 import { Store } from "./Store.tsx";
 
 function App() {
@@ -20,10 +23,14 @@ function App() {
 
   return (
     <div className='d-flex flex-column vh-100'>
+      <ToastContainer position="bottom-center" limit={ 1 }/>
+
       <header>
         <Navbar expand="lg">
           <Container>
-            <Navbar.Brand>SystemShop</Navbar.Brand>
+            <LinkContainer to="/">
+              <Navbar.Brand>SystemShop</Navbar.Brand>
+            </LinkContainer>
           </Container>
           <Nav>
             <Button variant={ mode } onClick={ switchModeHandler }>
@@ -31,6 +38,7 @@ function App() {
                 className={ mode === 'light' ? 'fa fa-sun' : 'fa fa-moon' }
               ></i>
             </Button>
+            { /*Todo: Convert it to an icon*/ }
             <Link to="/cart" className="nav-link">
               Cart
               {
@@ -43,6 +51,7 @@ function App() {
                 )
               }
             </Link>
+            {/*Todo: Convert it to an Icon*/ }
             <a href="/signin" className="nav-link">Sign In</a>
           </Nav>
         </Navbar>

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Button, Card, CardBody } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Store } from "../Store.tsx";
 import { CartItem } from "../types/Cart.ts";
 import { Product } from "../types/Product.ts";
@@ -15,6 +16,7 @@ function ProductItem( { product }: { product: Product } ) {
     cart: { cartItems }
   } = state
 
+
   const addToCartHandler = async ( item: CartItem ) => {
     const existItem = cartItems.find( ( cartItem ) => cartItem._id === product._id )
     const quantity = existItem ? existItem.quantity + 1 : 1
@@ -26,7 +28,9 @@ function ProductItem( { product }: { product: Product } ) {
       type: 'CART_ADD_ITEM',
       payload: { ...item, quantity },
     } )
+    toast.success( 'Product added to the cart' )
   }
+
 
   return <Card>
     <Link to={ `/${ product.brand }/${ product.slug }` }>
