@@ -1,4 +1,7 @@
-import {Product} from "./types/Product";
+import bcrypt from 'bcryptjs';
+import { Product } from "./models/productModel";
+
+import { User } from "./models/userModel";
 
 export const productList: Product[] = [
   {
@@ -13,7 +16,6 @@ export const productList: Product[] = [
     rating: 4.6,
     numReviews: 83,
   },
-
   {
     name: "Nexabook Series 6",
     slug: "nexabook-series6",
@@ -26,7 +28,6 @@ export const productList: Product[] = [
     rating: 4.1,
     numReviews: 243,
   },
-
   {
     name: "Nexabook Series 7",
     slug: "nexabook-series7",
@@ -39,7 +40,6 @@ export const productList: Product[] = [
     rating: 4.6,
     numReviews: 83,
   },
-
   {
     name: "Alienwar M15",
     slug: "alienwar-m15",
@@ -52,7 +52,6 @@ export const productList: Product[] = [
     rating: 4.6,
     numReviews: 83,
   },
-
   {
     name: "Alienwar M17",
     slug: "alienwar-m17",
@@ -65,7 +64,6 @@ export const productList: Product[] = [
     rating: 4.6,
     numReviews: 83,
   },
-
   {
     name: "McBook M1",
     slug: "mcbook-m1",
@@ -78,7 +76,6 @@ export const productList: Product[] = [
     rating: 4.6,
     numReviews: 83,
   },
-
   {
     name: "McBook M2",
     slug: "mcbook-m2",
@@ -91,7 +88,6 @@ export const productList: Product[] = [
     rating: 4.6,
     numReviews: 83,
   },
-
   {
     name: "McBook M3",
     slug: "mcbook-m3",
@@ -104,7 +100,6 @@ export const productList: Product[] = [
     rating: 4.6,
     numReviews: 83,
   },
-
   {
     name: "Razus Blade 14",
     slug: "razus-blade-14",
@@ -117,7 +112,6 @@ export const productList: Product[] = [
     rating: 4.6,
     numReviews: 83,
   },
-
   {
     name: "Razus Blade 15",
     slug: "razus-blade-15",
@@ -130,7 +124,6 @@ export const productList: Product[] = [
     rating: 4.6,
     numReviews: 83,
   },
-
   {
     name: "Razus Blade 16",
     slug: "razus-blade-16",
@@ -143,7 +136,6 @@ export const productList: Product[] = [
     rating: 4.6,
     numReviews: 83,
   },
-
   {
     name: "Razus Blade 17",
     slug: "razus-blade-17",
@@ -156,4 +148,19 @@ export const productList: Product[] = [
     rating: 4.6,
     numReviews: 83,
   },
+]
+
+export const sampleUsers: User[] = [
+  {
+    name: 'Jane',
+    email: 'jane@example.com',
+    password: bcrypt.hashSync( '123456' ),
+    isAdmin: true,
+  },
+  {
+    name: 'Jessica',
+    email: 'jessica@example.com',
+    password: bcrypt.hashSync( '654321' ),
+    isAdmin: false,
+  }
 ]
