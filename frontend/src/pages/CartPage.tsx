@@ -33,6 +33,10 @@ export default function CartPage() {
     navigate( '/signin?redirect=/shipping' )
   }
 
+  const removeItemHandler = ( item: CartItem ) => {
+    dispatch( { type: 'CART_REMOVE_ITEM', payload: item } )
+  }
+
   return (
     // todo: Beautify this mess
     <div>
@@ -84,6 +88,7 @@ export default function CartPage() {
 
                     <Col md={ 2 }>
                       <Button
+                        onClick={ () => removeItemHandler( item ) }
                         variant={ mode }
                       >
                         <i className="fas fa-trash"></i>
