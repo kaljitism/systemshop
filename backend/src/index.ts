@@ -1,6 +1,24 @@
-import express, {Request, Response} from "express";
-import {productList} from "./data";
 import cors from "cors";
+import dotenv from 'dotenv'
+import {mongoose} from "@typegoose/typegoose";
+import express, {Request, Response} from "express";
+
+import {productList} from "./data";
+
+// Configuring the env files to use MongoDB Database
+dotenv.config()
+
+// MongoDB URI
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/systemshop'
+mongoose.set('strictQuery', true)
+mongoose
+  .connect(MONGODB_URI)
+  .then(() => {
+    console.log('Connected to MongoDB')
+  })
+  .catch((error) => {
+    console.log(`${error} caught`)
+  })
 
 // Server
 const app = express()
