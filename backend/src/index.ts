@@ -1,9 +1,9 @@
 import cors from "cors";
 import dotenv from 'dotenv'
 import {mongoose} from "@typegoose/typegoose";
-import express, {Request, Response} from "express";
-
-import {productList} from "./data";
+import express from "express";
+import {productRouter} from "./routers/productRouter";
+import {seedRouter} from "./routers/seedRouter";
 
 // Configuring the env files to use MongoDB Database
 dotenv.config()
@@ -31,15 +31,11 @@ app.use(
   })
 )
 
-// GET Route to get all products
-app.get('/api/products', (request: Request, response: Response) => {
-  response.json(productList)
-})
+// Product Details
+app.use('/api/products', productRouter)
 
-// GET Route to get a single product Listing
-app.get('/api/products/:slug', (request: Request, response: Response) => {
-  response.json(productList.find((requestedProduct) => requestedProduct.slug === request.params.slug))
-})
+
+app.use('/api/seed', seedRouter)
 
 // Port Number
 const PORT = 4000

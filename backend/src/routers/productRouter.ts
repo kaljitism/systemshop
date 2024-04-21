@@ -17,7 +17,7 @@ productRouter.get(
 
 // /api/slug/:slug
 productRouter.get(
-  '/slug/:slug',
+  '/:slug',
   asyncHandler(async (request, response) => {
     const product = await ProductModel.findOne({slug: request.params.slug})
     if (product) {
