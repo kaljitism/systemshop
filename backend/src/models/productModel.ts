@@ -1,4 +1,5 @@
-import {modelOptions, prop} from "@typegoose/typegoose";
+import {getModelForClass, modelOptions, prop} from "@typegoose/typegoose";
+
 
 @modelOptions({schemaOptions: {timestamps: true}})
 
@@ -35,5 +36,6 @@ export class Product {
   @prop({required: true, default: 0})
   public numReviews!: number
 
-  
 }
+
+export const ProductModel = getModelForClass(Product)
