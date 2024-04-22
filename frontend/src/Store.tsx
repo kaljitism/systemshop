@@ -45,6 +45,7 @@ type Action =
   | { type: 'CART_ADD_ITEM', payload: CartItem }
   | { type: 'CART_REMOVE_ITEM', payload: CartItem }
   | { type: 'USER_SIGNIN', payload: UserInfo }
+  | { type: 'USER_SIGNOUT' }
 
 
 function reducer( state: AppState, action: Action ): AppState {
@@ -72,6 +73,25 @@ function reducer( state: AppState, action: Action ): AppState {
     return { ...state, cart: { ...state.cart, cartItems } }
   } else if ( action.type === 'USER_SIGNIN' ) {
     return { ...state, userInfo: action.payload }
+  } else if ( action.type === 'USER_SIGNOUT' ) {
+    return {
+      ...state,
+      cart: {
+        cartItems: [],
+        shippingAddress: {
+          fullName: "",
+          address: "",
+          city: "",
+          country: "",
+          postalCode: ""
+        },
+        paymentMethod: "Paypal",
+        itemsPrice: 0,
+        shippingPrice: 0,
+        taxPrice: 0,
+        totalPrice: 0
+      }
+    }
   } else {
     return state
   }
