@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
-import { UserInfo } from "node:os";
 import apiClient from "../apiClient.ts";
+import { UserInfo } from "./../types/userInfo.ts";
 
 export const useSignInMutation = () =>
   useMutation( {
