@@ -36,6 +36,8 @@ app.use(
 app.use( express.json() )
 app.use( express.urlencoded( { extended: true } ) )
 
+// TODO: Cart is not backed up on DB Server, write code to do that
+
 // Routers
 app.use( '/api/users', userRouter )
 app.use( '/api/products', productRouter )

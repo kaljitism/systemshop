@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import express from "express";
 import asyncHandler from "express-async-handler";
-import { UserModel } from "../models/userModel";
+import { User, UserModel } from "../models/userModel";
 import { generateToken } from "../utils";
 
 export const userRouter = express.Router()
@@ -27,3 +27,20 @@ userRouter.post(
   } )
 )
 
+userRouter.post(
+  '/signup',
+  asyncHandler( async ( request, response ) => {
+    const user = await UserModel.create( {
+      name: request.body.name,
+      email: request.body.name,
+      password: bcrypt.hashSync( request.body.password )
+    } as User )
+    response.json( {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      token: generateToken( user ),
+    } )
+  } )
+)
